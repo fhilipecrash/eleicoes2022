@@ -1,0 +1,11 @@
+{
+  "name": "eleicoes2022",
+  "version": "1.0.0",
+  "description": "API de Eleições para a Prova de PROG3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fhilipe Coelho",
+  "license": "ISC"
+}
