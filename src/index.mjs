@@ -14,16 +14,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/candidate', (req, res) => {
-  db.all('select * from candidato', (err, rows) => {
+  db.all("select * from candidato where nome like '%' || ? || '%'", [req.query.q.toUpperCase()], (err, rows) => {
     if (err) {
-      throw Error(err.message)
+      throw Error(err.message);
     }
 
-    rows.forEach(row => {
-      console.log(row.nome);
-    })
+    res.json(rows)
   })
-  res.json('finish')
 });
 
 app.listen(port, () => {
