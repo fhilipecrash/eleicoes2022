@@ -9,7 +9,7 @@ const db = new sqlite3.Database('eleicoes2022-pi.db', (err) => {
 });
 const port = 3000;
 
-function formatRes(rows) {
+function formatedRes(rows) {
   return rows.map(cand => {
     return {
       name: cand.cand_nome,
@@ -32,7 +32,7 @@ app.get('/candidate', (req, res) => {
       throw Error(err.message);
     }
 
-    res.json(formatRes(rows));
+    res.json(formatedRes(rows));
   });
 });
 
@@ -51,7 +51,7 @@ app.get('/role/:cargoId', (req, res) => {
       throw Error(err.message);
     }
 
-    res.json(formatRes(rows))
+    res.json(formatedRes(rows))
   });
 });
 
