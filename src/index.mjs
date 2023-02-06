@@ -9,9 +9,7 @@ const db = new sqlite3.Database('eleicoes2022-pi.db', (err) => {
 });
 const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+app.use(express.static('public'));
 
 app.get('/candidate', (req, res) => {
   db.all("select * from candidato where nome like '%' || ? || '%'", [req.query.q.toUpperCase()], (err, rows) => {
