@@ -23,11 +23,17 @@ function formatedRes(rows) {
 app.use(express.static('public'));
 
 app.get('/name', (req, res) => {
+  const name = req.query.name.toUpperCase()
+  if (!name) {
+    res.json();
+    return;
+  }
+
   const query = `
     select cand_nome, cargo_nome, cand_votos, cand_status from votos_cand_estado where cand_nome like '%' || ? || '%'
   `;
 
-  db.all(query, [req.query.name.toUpperCase()], (err, rows) => {
+  db.all(query, [name], (err, rows) => {
     if (err) {
       throw Error(err.message);
     }

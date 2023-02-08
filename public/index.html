@@ -10,8 +10,7 @@
 <body>
   <h1>Eleições 2022</h1>
   <label for="name">Nome do Candidato</label>
-  <input type="text" id="name" name="name">
-  <button type="submit" onclick="getCandidatesByName()">Pesquisar</button>
+  <input type="text" id="name" name="name" oninput="getCandidatesByName()">
   <div id="res"></div>
   <script src="api.js"></script>
 </body>

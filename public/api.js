@@ -1,5 +1,13 @@
 const api = 'http://localhost:3000';
 
+function getCandidateRoles() {
+
+}
+
+function getTownships() {
+
+}
+
 function getCandidatesByName() {
   const inputValue = document.getElementById('name').value;
 
@@ -20,12 +28,18 @@ function getCandidatesByName() {
           const span = document.createElement('span');
           span.appendChild(document.createTextNode(value));
 
-          divEl.appendChild(label);
-          divEl.appendChild(span);
+          const otherDiv = document.createElement('div');
+          otherDiv.appendChild(label);
+          otherDiv.appendChild(span);
+          divEl.appendChild(otherDiv);
           index++;
         }
         
         resEl.appendChild(divEl);
       });
-    });
+    })
+    .catch(() => {
+      const resEl = document.getElementById('res');
+      resEl.innerHTML = '';
+    })
 }

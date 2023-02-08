@@ -5,9 +5,14 @@ body {
   align-items: center;
 }
 
-#res {
+#res > div {
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  margin: 20px;
+}
+
+#res > div > div > label {
+  font-weight: bold;
 }
