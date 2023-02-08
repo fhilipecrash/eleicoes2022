@@ -11,17 +11,17 @@ function getCandidatesByName() {
 
       data.forEach(item => {
         const divEl = document.createElement('div');
-        const fields = ['Nome: ', 'Cargo: ', 'Staus: ', 'Votos: ']
+        const fields = ['Nome: ', 'Cargo: ', 'Staus: ', 'Votos: '];
 
         let index = 0;
         for (const [key, value] of Object.entries(item)) {
-          const nameLabel = document.createElement('label');
-          nameLabel.appendChild(document.createTextNode(fields[index]));
-          const nameEl = document.createElement('span');
-          nameEl.appendChild(document.createTextNode(value));
+          const label = document.createElement('label');
+          label.appendChild(document.createTextNode(fields[index]));
+          const span = document.createElement('span');
+          span.appendChild(document.createTextNode(value));
 
-          divEl.appendChild(nameLabel);
-          divEl.appendChild(nameEl);
+          divEl.appendChild(label);
+          divEl.appendChild(span);
           index++;
         }
         
