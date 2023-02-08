@@ -1,13 +1,13 @@
 const api = 'http://localhost:3000';
 
 window.onload = () => {
-  fetch(`${api}/roles`)
+  fetch(`${api}/role`)
     .then(response => response.json())
     .then(data => createSelectOptions(data, 'role'));
 
   fetch(`${api}/cities`)
     .then(response => response.json())
-    .then(data => createSelectOptions(data, 'citie'));
+    .then(data => createSelectOptions(data, 'city'));
 }
 
 function createSelectOptions(data, elementId) {
@@ -21,38 +21,56 @@ function createSelectOptions(data, elementId) {
   });
 }
 
+function setCandidatesInPage(data) {
+  const resEl = document.getElementById('res');
+  resEl.innerHTML = '';
+
+  data.forEach(item => {
+    const divEl = document.createElement('div');
+    const fields = ['Nome: ', 'Cargo: ', 'Staus: ', 'Votos: '];
+
+    let index = 0;
+    for (const value of Object.values(item)) {
+      const label = document.createElement('label');
+      label.appendChild(document.createTextNode(fields[index]));
+      const span = document.createElement('span');
+      span.appendChild(document.createTextNode(value));
+
+      const otherDiv = document.createElement('div');
+      otherDiv.appendChild(label);
+      otherDiv.appendChild(span);
+      divEl.appendChild(otherDiv);
+      index++;
+    }
+    
+    resEl.appendChild(divEl);
+  });
+}
+
 function getCandidatesByName() {
   const inputValue = document.getElementById('name').value;
 
-  fetch(`${api}/name?name=${inputValue}`)
+  fetch(`${api}/name?search=${inputValue}`)
     .then(response => response.json())
     .then(data => {
-      const resEl = document.getElementById('res');
-      resEl.innerHTML = '';
-
-      data.forEach(item => {
-        const divEl = document.createElement('div');
-        const fields = ['Nome: ', 'Cargo: ', 'Staus: ', 'Votos: '];
-
-        let index = 0;
-        for (const value of Object.values(item)) {
-          const label = document.createElement('label');
-          label.appendChild(document.createTextNode(fields[index]));
-          const span = document.createElement('span');
-          span.appendChild(document.createTextNode(value));
-
-          const otherDiv = document.createElement('div');
-          otherDiv.appendChild(label);
-          otherDiv.appendChild(span);
-          divEl.appendChild(otherDiv);
-          index++;
-        }
-        
-        resEl.appendChild(divEl);
-      });
+      setCandidatesInPage(data);
     })
     .catch(() => {
       const resEl = document.getElementById('res');
       resEl.innerHTML = '';
+    });
+}
+
+function getCandidatesWithSelectValues(query) {
+  const selectValue = document.getElementById('role').value;
+
+  fetch(`${api}/${query === 'role' ? 'role' : 'city'}/${selectValue}`)
+    .then(response => response.json())
+    .then(data => {
+      setCandidatesInPage(data);
     })
+    .catch(() => {
+      const resEl = document.getElementById('res');
+      resEl.innerHTML = '';
+    });
 }

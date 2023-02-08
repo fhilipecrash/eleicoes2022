@@ -23,7 +23,7 @@ function formatedRes(rows) {
 app.use(express.static('public'));
 
 app.get('/name', (req, res) => {
-  const name = req.query.name.toUpperCase()
+  const name = req.query.search.toUpperCase()
   if (!name) {
     res.json();
     return;
@@ -61,7 +61,7 @@ app.get('/role/:cargoId', (req, res) => {
   });
 });
 
-app.get('/roles', (req, res) => {
+app.get('/role', (req, res) => {
   const query = `select * from cargo order by nome`;
 
   db.all(query, (err, rows) => {
@@ -71,6 +71,20 @@ app.get('/roles', (req, res) => {
 
     res.json(rows)
   })
+});
+
+app.get('/city', (req, res) => {
+  const query = `
+    select cand_nome, cand_votos, cand_status from votos_cand_municipio where muni_nome like '%' || ? || '%'
+  `;
+
+  db.all(query, [req.query.search.toUpperCase()], (err, rows) => {
+    if (err) {
+      throw Error(err.message);
+    }
+
+    res.json(formatedRes(rows))
+  });
 });
 
 app.get('/cities', (req, res) => {
