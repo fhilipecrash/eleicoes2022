@@ -8,26 +8,23 @@ function getCandidatesByName() {
     .then(data => {
       const resEl = document.getElementById('res');
       resEl.innerHTML = '';
-      
+
       data.forEach(item => {
         const divEl = document.createElement('div');
+        const fields = ['Nome: ', 'Cargo: ', 'Staus: ', 'Votos: ']
 
-        const nameEl = document.createElement('span');
-        nameEl.appendChild(document.createTextNode(item.name));
+        let index = 0;
+        for (const [key, value] of Object.entries(item)) {
+          const nameLabel = document.createElement('label');
+          nameLabel.appendChild(document.createTextNode(fields[index]));
+          const nameEl = document.createElement('span');
+          nameEl.appendChild(document.createTextNode(value));
 
-        const roleEl = document.createElement('span');
-        roleEl.appendChild(document.createTextNode(item.role));
-
-        const statusEl = document.createElement('span');
-        statusEl.appendChild(document.createTextNode(item.status));
-
-        const votesEl = document.createElement('span');
-        votesEl.appendChild(document.createTextNode(item.votes));
-  
-        divEl.appendChild(nameEl);
-        divEl.appendChild(roleEl);
-        divEl.appendChild(statusEl);
-        divEl.appendChild(votesEl);
+          divEl.appendChild(nameLabel);
+          divEl.appendChild(nameEl);
+          index++;
+        }
+        
         resEl.appendChild(divEl);
       });
     });
