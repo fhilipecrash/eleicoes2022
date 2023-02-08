@@ -62,7 +62,7 @@ app.get('/role/:cargoId', (req, res) => {
 });
 
 app.get('/roles', (req, res) => {
-  const query = `select * from cargo`;
+  const query = `select * from cargo order by nome`;
 
   db.all(query, (err, rows) => {
     if (err) {
@@ -73,8 +73,8 @@ app.get('/roles', (req, res) => {
   })
 });
 
-app.get('/townships', (req, res) => {
-  const query = `select * from municipio`;
+app.get('/cities', (req, res) => {
+  const query = `select id, nome from municipio order by nome`;
 
   db.all(query, (err, rows) => {
     if (err) {

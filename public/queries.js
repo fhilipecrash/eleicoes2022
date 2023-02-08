@@ -5,9 +5,9 @@ window.onload = () => {
     .then(response => response.json())
     .then(data => createSelectOptions(data, 'role'));
 
-  fetch(`${api}/townships`)
+  fetch(`${api}/cities`)
     .then(response => response.json())
-    .then(data => createSelectOptions(data, 'township'));
+    .then(data => createSelectOptions(data, 'citie'));
 }
 
 function createSelectOptions(data, elementId) {
@@ -35,7 +35,7 @@ function getCandidatesByName() {
         const fields = ['Nome: ', 'Cargo: ', 'Staus: ', 'Votos: '];
 
         let index = 0;
-        for (const [key, value] of Object.entries(item)) {
+        for (const value of Object.values(item)) {
           const label = document.createElement('label');
           label.appendChild(document.createTextNode(fields[index]));
           const span = document.createElement('span');
