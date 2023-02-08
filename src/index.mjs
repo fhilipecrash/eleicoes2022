@@ -22,7 +22,7 @@ function formatedRes(rows) {
 
 app.use(express.static('public'));
 
-app.get('/candidate', (req, res) => {
+app.get('/name', (req, res) => {
   const query = `
     select cand_nome, cargo_nome, cand_votos, cand_status from votos_cand_estado where cand_nome like '%' || ? || '%'
   `;
