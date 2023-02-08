@@ -13,10 +13,10 @@
   <input type="text" id="name" name="name" oninput="getCandidatesByName()">
   <br>
   <label for="role">Cargo</label>
-  <select name="role" id="role" onchange="getCandidatesWithSelectValues('role')"></select>
+  <select name="role" id="role" onchange="getCandidatesByRole()"></select>
   <br>
   <label for="city">Município</label>
-  <select name="city" id="city" onchange="getCandidatesWithSelectValues('city')"></select>
+  <select name="city" id="city" onchange="getCandidatesByCity()"></select>
   <div id="res"></div>
   <script src="queries.js"></script>
 </body>

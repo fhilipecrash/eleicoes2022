@@ -1,7 +1,7 @@
 const api = 'http://localhost:3000';
 
 window.onload = () => {
-  fetch(`${api}/role`)
+  fetch(`${api}/roles`)
     .then(response => response.json())
     .then(data => createSelectOptions(data, 'role'));
 
@@ -61,10 +61,25 @@ function getCandidatesByName() {
     });
 }
 
-function getCandidatesWithSelectValues(query) {
+function getCandidatesByRole() {
   const selectValue = document.getElementById('role').value;
 
-  fetch(`${api}/${query === 'role' ? 'role' : 'city'}/${selectValue}`)
+  fetch(`${api}/role/${selectValue}`)
+    .then(response => response.json())
+    .then(data => {
+      setCandidatesInPage(data);
+    })
+    .catch(() => {
+      const resEl = document.getElementById('res');
+      resEl.innerHTML = '';
+    });
+}
+
+function getCandidatesByCity() {
+  const selectElement = document.getElementById('city');
+  const selectValue = selectElement.options[selectElement.selectedIndex].text;
+
+  fetch(`${api}/city?search=${selectValue}`)
     .then(response => response.json())
     .then(data => {
       setCandidatesInPage(data);
