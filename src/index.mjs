@@ -38,11 +38,6 @@ app.get('/name', (req, res) => {
 });
 
 app.get('/role/:cargoId', (req, res) => {
-  // 1: Presidente
-  // 3: Governador
-  // 5: Senador
-  // 6: Deputado Federal
-  // 7: Deputado Estadual
   const query = `
     select cand_nome, cand_votos, cand_status from votos_cand_estado where cargo_id = ?
   `;
