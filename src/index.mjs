@@ -61,6 +61,30 @@ app.get('/role/:cargoId', (req, res) => {
   });
 });
 
+app.get('/roles', (req, res) => {
+  const query = `select * from cargo`;
+
+  db.all(query, (err, rows) => {
+    if (err) {
+      throw Error(err.message);
+    }
+
+    res.json(rows)
+  })
+});
+
+app.get('/townships', (req, res) => {
+  const query = `select * from municipio`;
+
+  db.all(query, (err, rows) => {
+    if (err) {
+      throw Error(err.message);
+    }
+
+    res.json(rows)
+  })
+})
+
 app.listen(port, () => {
   console.log(`Listening at port ${port}`);
 });

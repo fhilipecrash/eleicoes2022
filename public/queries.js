@@ -1,11 +1,24 @@
 const api = 'http://localhost:3000';
 
-function getCandidateRoles() {
+window.onload = () => {
+  fetch(`${api}/roles`)
+    .then(response => response.json())
+    .then(data => createSelectOptions(data, 'role'));
 
+  fetch(`${api}/townships`)
+    .then(response => response.json())
+    .then(data => createSelectOptions(data, 'township'));
 }
 
-function getTownships() {
+function createSelectOptions(data, elementId) {
+  const select = document.getElementById(elementId);
 
+  data.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.id;
+    option.appendChild(document.createTextNode(item.nome));
+    select.appendChild(option);
+  });
 }
 
 function getCandidatesByName() {
