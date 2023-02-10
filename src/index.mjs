@@ -89,6 +89,24 @@ app.get('/cities', (req, res) => {
   })
 })
 
+app.get('/candidates/:onlyElecteds', (req, res) => {
+
+  const query = `
+    select cand_nome, cand_votos, cand_status
+    from votos_cand_estado
+    ${(req.params.onlyElecteds == 1)? 'WHERE cand_status = 1':''}
+  `;
+  console.log(req.params.all)
+  
+  db.all(query, (err, rows) => {
+    if (err) {
+      throw ERROR(err.message);
+    }
+
+    res.json(formatedRes(rows));
+  })
+})
+
 app.listen(port, () => {
   console.log(`Listening at port ${port}`);
 });
