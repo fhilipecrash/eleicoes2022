@@ -96,7 +96,6 @@ app.get('/candidates/:onlyElecteds', (req, res) => {
     from votos_cand_estado
     ${(req.params.onlyElecteds == 1)? 'WHERE cand_status = 1':''}
   `;
-  console.log(req.params.all)
   
   db.all(query, (err, rows) => {
     if (err) {

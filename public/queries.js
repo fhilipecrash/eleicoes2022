@@ -8,6 +8,20 @@ window.onload = () => {
   fetch(`${api}/cities`)
     .then(response => response.json())
     .then(data => createSelectOptions(data, 'city'));
+
+  addAllElectedOnly()
+}
+
+function addAllElectedOnly() {
+  const select = document.getElementById('elected');
+  const itens = ['Todos', 'Eleitos']
+
+  for (let i = 0; i < itens.length; i++) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.appendChild(document.createTextNode(itens[i]));
+    select.appendChild(option);
+  }
 }
 
 function createSelectOptions(data, elementId) {
@@ -27,7 +41,7 @@ function setCandidatesInPage(data) {
 
   data.forEach(item => {
     const divEl = document.createElement('div');
-    const fields = ['Nome: ', 'Cargo: ', 'Staus: ', 'Votos: '];
+    const fields = ['Nome: ', 'Cargo: ', 'Status: ', 'Votos: '];
 
     let index = 0;
     for (const value of Object.values(item)) {
@@ -42,7 +56,7 @@ function setCandidatesInPage(data) {
       divEl.appendChild(otherDiv);
       index++;
     }
-    
+
     resEl.appendChild(divEl);
   });
 }
@@ -80,6 +94,20 @@ function getCandidatesByCity() {
   const selectValue = selectElement.options[selectElement.selectedIndex].text;
 
   fetch(`${api}/city?search=${selectValue}`)
+    .then(response => response.json())
+    .then(data => {
+      setCandidatesInPage(data);
+    })
+    .catch(() => {
+      const resEl = document.getElementById('res');
+      resEl.innerHTML = '';
+    });
+}
+
+function getAllOrElectedOnly() {
+  const selectElement = document.getElementById('elected');
+  const allCandidates = selectElement.selectedIndex;
+  fetch(`${api}/candidates/${allCandidates}`)
     .then(response => response.json())
     .then(data => {
       setCandidatesInPage(data);

@@ -17,7 +17,11 @@
   <br>
   <label for="city">Município</label>
   <select name="city" id="city" onchange="getCandidatesByCity()"></select>
+  <br>
+  <label for="elected">Eleitos e Não Eleitos</label>
+  <select name="elected" id="elected" onchange="getAllOrElectedOnly()"></select>
   <div id="res"></div>
+  <br>
   <script src="queries.js"></script>
 </body>
 </html>
