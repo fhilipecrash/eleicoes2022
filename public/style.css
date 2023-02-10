@@ -5,11 +5,19 @@ body {
   align-items: center;
 }
 
+#res {
+  width: 100vw;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
 #res > div {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column !important;
   align-items: center;
+  width: 200px;
   margin: 20px;
 }
 
