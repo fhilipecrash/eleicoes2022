@@ -14,7 +14,7 @@ window.onload = () => {
 
 function addAllElectedOnly() {
   const select = document.getElementById('elected');
-  const itens = ['Todos', 'Eleitos']
+  const itens = ['Não-Eleitos', 'Eleitos']
 
   for (let i = 0; i < itens.length; i++) {
     const option = document.createElement('option');
