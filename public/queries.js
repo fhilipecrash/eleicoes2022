@@ -8,20 +8,6 @@ window.onload = () => {
   fetch(`${api}/cities`)
     .then(response => response.json())
     .then(data => createSelectOptions(data, 'city'));
-
-  addAllElectedOnly()
-}
-
-function addAllElectedOnly() {
-  const select = document.getElementById('elected');
-  const itens = ['Não-Eleitos', 'Eleitos']
-
-  for (let i = 0; i < itens.length; i++) {
-    const option = document.createElement('option');
-    option.value = i;
-    option.appendChild(document.createTextNode(itens[i]));
-    select.appendChild(option);
-  }
 }
 
 function createSelectOptions(data, elementId) {

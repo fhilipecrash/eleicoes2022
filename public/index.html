@@ -19,7 +19,10 @@
   <select name="city" id="city" onchange="getCandidatesByCity()"></select>
   <br>
   <label for="elected">Eleitos e Não Eleitos</label>
-  <select name="elected" id="elected" onchange="getAllOrElectedOnly()"></select>
+  <select name="elected" id="elected" onchange="getAllOrElectedOnly()">
+    <option value="0">Não-Eleitos</option>
+    <option value="1">Eleitos</option>
+  </select>
   <div id="res"></div>
   <br>
   <script src="queries.js"></script>
