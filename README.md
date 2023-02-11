@@ -8,3 +8,10 @@ npm run dev
 ```
 
 The application can be accessed at http://localhost:3000
+
+## Autores
+
+```
+Antônio Ivo da Silva Gomes
+José Fhilipe Martins Coelho
+```
