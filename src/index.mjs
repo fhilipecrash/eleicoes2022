@@ -1,3 +1,6 @@
+// Antônio Ivo da Silva Gomes
+// José Fhilipe Martins Coelho
+
 import express from "express";
 import sqlite3 from "sqlite3";
 
